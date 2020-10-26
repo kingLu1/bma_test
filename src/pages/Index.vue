@@ -24,7 +24,8 @@
           </div>
           <div class="flex pr-5">
             <div class="pt-10">
-              <p class="text-2xl border-b-2 border-theme-navy_blue text-theme-navy_blue" style="font-size: 28px;">
+              <p class="text-xl flex justify-self-center border-b-2 border-theme-navy_blue text-theme-navy_blue"
+                 style="font-size: 28px;">
                 Moshood Aremu</p>
             </div>
             <div>
@@ -153,8 +154,9 @@
               <div class="email">
                 <p>Munachim@brandmobileafrica.com</p>
               </div>
-              <div class="role">
-                <select class="block w-full px-2 py-2 appearance-none border-theme-brilliant_blue">
+              <div class="role relative">
+                <g-image class="absolute  py-2 right-0" src="~/assets/svg/arrow_down.svg"/>
+                <select class="block w-full mr-4 px-2 py-2 appearance-none border-theme-brilliant_blue">
                   <option>New Mexico</option>
                   <option>Missouri</option>
                   <option>Texas</option>
@@ -162,7 +164,7 @@
               </div>
               <div class="actions">
                 <g-image class="mr-4" src="~/assets/svg/block.svg"/>
-                <g-image src="~/assets/svg/trash.svg"/>
+                <g-image src="~/assets/svg/trash.svg" @click="deleteUser()"/>
               </div>
             </div>
             <div class="user">
@@ -175,8 +177,9 @@
               <div class="email">
                 <p>Munachim@brandmobileafrica.com</p>
               </div>
-              <div class="role">
-                <select class="block w-full px-2 py-2 appearance-none border-theme-brilliant_blue">
+              <div class="role relative">
+                <g-image class="absolute  py-2 right-0" src="~/assets/svg/arrow_down.svg"/>
+                <select class="block w-full mr-4 px-2 py-2 appearance-none border-theme-brilliant_blue">
                   <option>New Mexico</option>
                   <option>Missouri</option>
                   <option>Texas</option>
@@ -184,7 +187,53 @@
               </div>
               <div class="actions">
                 <g-image class="mr-4" src="~/assets/svg/block.svg"/>
-                <g-image src="~/assets/svg/trash.svg"/>
+                <g-image src="~/assets/svg/trash.svg" @click="deleteUser()"/>
+              </div>
+            </div>
+            <div class="user">
+              <div class="photo">
+                <g-image src="~/assets/svg/user2.svg"/>
+              </div>
+              <div class="username">
+                <p>Munachim Anyamene</p>
+              </div>
+              <div class="email">
+                <p>Munachim@brandmobileafrica.com</p>
+              </div>
+              <div class="role relative">
+                <g-image class="absolute  py-2 right-0" src="~/assets/svg/arrow_down.svg"/>
+                <select class="block w-full mr-4 px-2 py-2 appearance-none border-theme-brilliant_blue">
+                  <option>New Mexico</option>
+                  <option>Missouri</option>
+                  <option>Texas</option>
+                </select>
+              </div>
+              <div class="actions">
+                <g-image class="mr-4" src="~/assets/svg/block.svg"/>
+                <g-image src="~/assets/svg/trash.svg" @click="deleteUser()"/>
+              </div>
+            </div>
+            <div class="user">
+              <div class="photo">
+                <g-image src="~/assets/svg/user2.svg"/>
+              </div>
+              <div class="username">
+                <p>Munachim Anyamene</p>
+              </div>
+              <div class="email">
+                <p>Munachim@brandmobileafrica.com</p>
+              </div>
+              <div class="role relative">
+                <g-image class="absolute  py-2 right-0" src="~/assets/svg/arrow_down.svg"/>
+                <select class="block w-full mr-4 px-2 py-2 appearance-none border-theme-brilliant_blue">
+                  <option>New Mexico</option>
+                  <option>Missouri</option>
+                  <option>Texas</option>
+                </select>
+              </div>
+              <div class="actions">
+                <g-image class="mr-4" src="~/assets/svg/block.svg"/>
+                <g-image src="~/assets/svg/trash.svg" @click="deleteUser()"/>
               </div>
             </div>
           </div>
@@ -244,8 +293,13 @@ export default {
   @apply p-6 py-4
 }
 
+
 .user {
   @apply flex items-center justify-between py-2 pb-4 mt-2 border-b border-theme-dim_gray;
+}
+
+.user:last-child {
+  @apply border-0
 }
 
 .actions {
