@@ -14,7 +14,7 @@
         <div>
           <div class="relative w-24 h-24 bg-black rounded-lg profile_picture">
             <div class="absolute bottom-0 right-0 p-2 -mb-1 -mr-2 bg-white rounded-full">
-              <g-image class="" src="~/assets/svg/cancel.svg"/>
+              <g-image class="" src="~/assets/svg/arrow-up.svg"/>
             </div>
           </div>
           <div class="">
