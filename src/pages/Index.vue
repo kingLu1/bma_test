@@ -32,7 +32,7 @@
             <div class="pt-10">
               <p class="flex text-xl border-b-2 justify-self-center border-theme-navy_blue text-theme-navy_blue"
                  style="font-size: 28px;">
-                {{ (user.first_name) ? user.first_name : 'james' }} {{ (user.last_name) ? user.last_name : 'james'}}</p>
+                {{ user.first_name }} {{ user.last_name }}</p>
             </div>
             <div>
               <div class="p-2 rounded-full cursor-pointer bg-theme-dim_gray" @click="showEditUserBox =!showEditUserBox">
