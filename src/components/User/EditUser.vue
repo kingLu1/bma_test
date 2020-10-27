@@ -62,7 +62,7 @@
             </label>
             <div class="relative ">
               <g-image class="absolute py-3 ml-4 w-3" immediate="true" src="~/assets/svg/pin.svg"/>
-              <input id="address" class="w-full px-3 pl-10 py-2 border-theme-navy_blue border-2 rounded-lg"
+              <input id="address" v-model="user.address" class="w-full px-3 pl-10 py-2 border-theme-navy_blue border-2 rounded-lg"
                      placeholder="Type Email Address"
                      type="text">
             </div>
@@ -102,7 +102,7 @@
               <input id="email" v-model="user.email"
                      class="w-full px-3 pl-10 py-2 border-theme-navy_blue border-2 rounded-lg"
                      placeholder="Type Email Address"
-                     type="text">
+                     type="email">
             </div>
           </div>
           <div class="w-1/2">
@@ -115,7 +115,7 @@
               <input id="number" v-model="user.phone"
                      class="w-full px-3 pl-10 py-2 border-theme-navy_blue border-2 rounded-lg"
                      placeholder="Type Email Address"
-                     type="number">
+                     type="text">
             </div>
           </div>
         </div>
