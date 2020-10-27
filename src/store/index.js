@@ -7,7 +7,7 @@ Vue.use(Vuex)
 const store = {
   state: {
     roles: [],
-    user: localStorage.getItem('user'),
+    user: (process.isClient) ? localStorage.getItem('user') : '',
     loading: false,
   },
   getters: {
@@ -27,11 +27,17 @@ const store = {
     },
     SET_USER(state, payload) {
       const stringify = JSON.stringify(payload.data);
-      (state.user) ? state.user = localStorage.getItem('user') : localStorage.setItem('user', stringify)
+      if (process.isClient) {
+        (state.user) ? state.user = localStorage.getItem('user') : localStorage.setItem('user', stringify)
+      }
+
       state.loading = false
     },
     GET_USER(state) {
-      state.user = localStorage.getItem('user')
+      if(process.isClient){
+        state.user = localStorage.getItem('user')
+      }
+
     }
   },
   actions: {
@@ -69,7 +75,9 @@ const store = {
       }
       user.sub_users.push(newSubUser)
       const stringify = JSON.stringify(user);
-      localStorage.setItem('user', stringify)
+      if(process.isClient){
+        localStorage.setItem('user', stringify)
+      }
       vuexIns.commit('GET_USER')
 
     },
@@ -78,7 +86,10 @@ const store = {
       let user = JSON.parse(vuexIns.state.user)
       user.sub_users.splice(payload, 1)
       const stringify = JSON.stringify(user);
-      localStorage.setItem('user', stringify)
+      if(process.isClient){
+        localStorage.setItem('user', stringify)
+      }
+
       vuexIns.commit('GET_USER')
     }
 

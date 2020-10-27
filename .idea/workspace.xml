@@ -3,13 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="35494ca8-e7c2-4510-b6bc-069294ea2b94" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Navigation/TopBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navigation/TopBar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/User/DeleteUser.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/DeleteUser.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/README.md" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +37,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Apps-pot/Qik/Vendor Admin" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -95,7 +90,8 @@
       <workItem from="1603563704486" duration="3611000" />
       <workItem from="1603623017377" duration="24671000" />
       <workItem from="1603667694123" duration="18984000" />
-      <workItem from="1603744280068" duration="20533000" />
+      <workItem from="1603744280068" duration="21237000" />
+      <workItem from="1603784991802" duration="169000" />
     </task>
     <servers />
   </component>
@@ -111,26 +107,26 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="433" y="120" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.864@0.0.1536.864" timestamp="1603630320548" />
-    <state x="496" y="129" key="FileChooserDialogImpl" timestamp="1603781926662">
+    <state x="496" y="129" key="FileChooserDialogImpl" timestamp="1603784828597">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="496" y="129" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1603781926662" />
-    <state width="1485" height="205" key="GridCell.Tab.0.bottom" timestamp="1603744494662">
+    <state x="496" y="129" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1603784828597" />
+    <state width="1485" height="205" key="GridCell.Tab.0.bottom" timestamp="1603784831802">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1485" height="205" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1603744494662" />
-    <state width="1485" height="205" key="GridCell.Tab.0.center" timestamp="1603744494662">
+    <state width="1485" height="205" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1603784831802" />
+    <state width="1485" height="205" key="GridCell.Tab.0.center" timestamp="1603784831802">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1485" height="205" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1603744494662" />
-    <state width="1485" height="205" key="GridCell.Tab.0.left" timestamp="1603744494662">
+    <state width="1485" height="205" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1603784831802" />
+    <state width="1485" height="205" key="GridCell.Tab.0.left" timestamp="1603784831802">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1485" height="205" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1603744494662" />
-    <state width="1485" height="205" key="GridCell.Tab.0.right" timestamp="1603744494662">
+    <state width="1485" height="205" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1603784831802" />
+    <state width="1485" height="205" key="GridCell.Tab.0.right" timestamp="1603784831802">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1485" height="205" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1603744494662" />
+    <state width="1485" height="205" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1603784831802" />
     <state width="623" height="498" key="SwitcherDM" timestamp="1603715253232">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
