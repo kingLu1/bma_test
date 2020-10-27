@@ -16,8 +16,8 @@
         <div class="flex justify-between mb-10">
           <div>
             <div class="relative w-24 h-24 bg-white rounded-lg profile_picture">
-              <g-image :src="parsedUser.image_url || '~/assets/svg/user2.svg'"
-                       class="w-full" fit="fill"/>
+              <!--              <g-image :src="user.image_url || ~/assets/svg/user2.svg'"-->
+              <!--                       class="w-full" fit="fill"/>-->
               <div class="absolute bottom-0 right-0 p-2 -mb-1 -mr-2 bg-white rounded-full">
                 <g-image class="" src="~/assets/svg/arrow-up.svg"/>
               </div>
@@ -32,7 +32,7 @@
             <div class="pt-10">
               <p class="flex text-xl border-b-2 justify-self-center border-theme-navy_blue text-theme-navy_blue"
                  style="font-size: 28px;">
-                {{ parsedUser.first_name }} {{ parsedUser.last_name }}</p>
+                {{ (user.first_name) ? user.first_name : 'james' }} {{ (user.last_name) ? user.last_name : 'james'}}</p>
             </div>
             <div>
               <div class="p-2 rounded-full cursor-pointer bg-theme-dim_gray" @click="showEditUserBox =!showEditUserBox">
@@ -43,15 +43,15 @@
         </div>
         <div class="info">
           <g-image src="~/assets/svg/mail (1).svg"/>
-          <p>{{ parsedUser.email }}</p>
+          <p>{{ user.email }}</p>
         </div>
         <div class="info">
           <g-image src="~/assets/svg/phone.svg"/>
-          <p>{{ parsedUser.phone }}</p>
+          <p>{{ user.phone }}</p>
         </div>
         <div class="info">
           <g-image src="~/assets/svg/pin.svg"/>
-          <p>{{ parsedUser.address }}</p>
+          <p>{{ user.address }}</p>
         </div>
         <div v-if="!showChangePassword" class="info">
           <g-image src="~/assets/svg/lock (1).svg"/>
@@ -127,7 +127,7 @@
 
           </div>
           <div class="users">
-            <div v-for="(subUser,index) in parsedUser.sub_users" :key="index"
+            <div v-for="(subUser,index) in user.sub_users" :key="index"
                  :class="{'text-theme-mischka': !subUser.has_activated}"
                  class="user">
               <div class="photo">
@@ -205,9 +205,9 @@ export default {
       user: 'user',
       showLoading: 'showLoading'
     }),
-    parsedUser() {
-      return (process.isClient) ? JSON.parse(this.user) : '';
-    }
+    // user() {
+    //   return this.user
+    // }
   },
   components: {
     DeleteUser,
@@ -235,9 +235,8 @@ export default {
       this.createSubUser(payload)
     }
   },
-  mounted() {
+  async mounted() {
     this.getRoles()
-    this.getUser()
   },
 }
 </script>

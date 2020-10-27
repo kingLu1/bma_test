@@ -8,14 +8,15 @@ const store = {
   state: {
     roles: [],
     user: (process.isClient) ? localStorage.getItem('user') : '',
-    loading: false,
+    loading: true,
   },
   getters: {
     roles: state => {
       return state.roles
     },
     user: state => {
-      return state.user
+      return (process.isClient) ? JSON.parse(state.user) : '';
+
     },
     showLoading: state => {
       return state.loading
@@ -26,13 +27,18 @@ const store = {
       state.roles = payload
     },
     SET_USER(state, payload) {
-
       if (process.isClient) {
         const stringify = JSON.stringify(payload.data);
-        (state.user) ? state.user = localStorage.getItem('user') : localStorage.setItem('user', stringify)
+        if (state.user) {
+          state.user = localStorage.getItem('user')
+        } else {
+          localStorage.setItem('user', stringify)
+          state.user = localStorage.getItem('user')
+        }
+        setTimeout(() => {
+          state.loading = false
+        }, 2000)
       }
-
-      state.loading = false
     },
     GET_USER(state) {
       if (process.isClient) {

@@ -7,17 +7,26 @@
       <TopBar/>
       <slot/>
     </div>
-
   </div>
 </template>
 <script>
 import Nav from '~/components/Navigation/Nav'
 import TopBar from "~/components/Navigation/TopBar";
+import {mapActions} from "vuex";
 
 export default {
   components: {
     Nav,
     TopBar
+  },
+  methods: {
+    ...mapActions({
+      getUser: 'getUser',
+    }),
+  },
+
+  created() {
+    this.getUser()
   }
 
 }

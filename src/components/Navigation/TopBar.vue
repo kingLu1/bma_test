@@ -12,8 +12,8 @@
     <div class="user_info flex">
       <div class="flex mr-10">
         <g-image src="~/assets/svg/user.svg"/>
-        <p v-show="parsedUser">
-          Hi, {{ parsedUser.first_name }}
+        <p v-if="user">
+          Hi, {{ (user.first_name) ? user.first_name : 'james' }}
         </p>
       </div>
       <div class="flex">
@@ -36,9 +36,6 @@ export default {
     ...mapGetters({
       user: 'user'
     }),
-    parsedUser() {
-      return (process.isClient) ? JSON.parse(this.user) : '';
-    }
   },
 }
 </script>
