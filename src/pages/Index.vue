@@ -206,7 +206,10 @@ export default {
       showLoading: 'showLoading'
     }),
     parsedUser() {
-      return JSON.parse(this.user)
+      if (process.isClient) {
+        return JSON.parse(this.user)
+      }
+
     }
   },
   components: {
