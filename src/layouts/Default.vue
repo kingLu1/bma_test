@@ -1,9 +1,9 @@
 <template>
-  <div class="layout flex">
+  <div class="flex layout">
     <div class="fixed">
-      <Nav class="nav h-screen"/>
+      <Nav class="h-screen nav"/>
     </div>
-    <div class="pages relative w-full">
+    <div class="relative w-full pages">
       <TopBar/>
       <slot/>
     </div>
@@ -22,11 +22,15 @@ export default {
   methods: {
     ...mapActions({
       getUser: 'getUser',
+      getRoles: 'getRoles',
     }),
   },
 
   created() {
+    // Get Jsons from Server
     this.getUser()
+    this.getRoles()
+    // Get Jsons from Server
   }
 
 }

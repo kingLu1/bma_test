@@ -28,16 +28,16 @@ const store = {
     },
     SET_USER(state, payload) {
       if (process.isClient) {
-        const stringify = JSON.stringify(payload.data);
         if (state.user) {
           state.user = localStorage.getItem('user')
         } else {
+          let stringify = JSON.stringify(payload.data);
           localStorage.setItem('user', stringify)
           state.user = localStorage.getItem('user')
         }
-        setTimeout(() => {
-          state.loading = false
-        }, 2000)
+        // setTimeout(() => {
+        state.loading = false
+        // }, 2000)
       }
     },
     GET_USER(state) {
@@ -67,16 +67,25 @@ const store = {
     // Fetch From Db
 
     //User Operations
-    createSubUser(vuexIns, payload) {
-
+    updateUserInfo(vuexIns, payload) {
       if (process.isClient) {
-        let user = JSON.parse(vuexIns.state.user)
+        const stringify = JSON.stringify(payload);
+        localStorage.setItem('user', stringify)
+        vuexIns.commit('GET_USER')
+      }
+    },
+    changePassword(vuexIns, payload) {
+      console.log(payload)
+    },
+    createSubUser(vuexIns, payload) {
+      if (process.isClient) {
+        let user = vuexIns.getters.user
         let newSubUser = {
           user_id: "MXTi9FjpyQKxfEsqQjbtGtZvjEuvBWRo",
           first_name: "Munachim Anyamene",
           is_active: true,
           email: payload.email,
-          has_activated: false,
+          has_activated: true,
           role: {
             role_id: "MXTi9FjpyQKxfEsqQjbtGtZvjEuvBWRo",
             name: payload.role
@@ -85,21 +94,52 @@ const store = {
         user.sub_users.push(newSubUser)
         const stringify = JSON.stringify(user);
         localStorage.setItem('user', stringify)
+        vuexIns.commit('GET_USER')
       }
-      vuexIns.commit('GET_USER')
+
 
     },
     deleteSubUser(vuexIns, payload) {
       if (process.isClient) {
-        let user = JSON.parse(vuexIns.state.user)
+        let user = vuexIns.getters.user
         user.sub_users.splice(payload, 1)
         const stringify = JSON.stringify(user);
         localStorage.setItem('user', stringify)
         vuexIns.commit('GET_USER')
       }
-
-
+    },
+    activateSubUser(vuexIns, payload) {
+      let index = payload
+      let user = vuexIns.getters.user
+      user.sub_users[index].is_active = true
+      if (process.isClient) {
+        const stringify = JSON.stringify(user);
+        localStorage.setItem('user', stringify)
+        vuexIns.commit('GET_USER')
+      }
+    },
+    deactivateSubUser(vuexIns, payload) {
+      let index = payload
+      let user = vuexIns.getters.user
+      user.sub_users[index].is_active = false
+      if (process.isClient) {
+        const stringify = JSON.stringify(user);
+        localStorage.setItem('user', stringify)
+        vuexIns.commit('GET_USER')
+      }
+    },
+    changeSubUserRole(vuexIns, payload) {
+      let index = payload.index
+      let role = payload.newRole
+      let user = vuexIns.getters.user
+      user.sub_users[index].role.name = role
+      if (process.isClient) {
+        const stringify = JSON.stringify(user);
+        localStorage.setItem('user', stringify)
+        vuexIns.commit('GET_USER')
+      }
     }
+
 
     //User Operations
 

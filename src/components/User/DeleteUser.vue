@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed z-50 flex items-center justify-center w-full h-screen">
+  <div class="fixed z-50 flex items-center justify-center -mt-16 w-full h-screen">
     <div class="w-full h-full bg-theme-white_smoke blur">
     </div>
     <div class="absolute flex flex-col w-1/3 p-5 -ml-64 bg-white border-2 rounded border-theme-navy_blue">

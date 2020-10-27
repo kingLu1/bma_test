@@ -1,7 +1,7 @@
 <template>
   <div class="Navigation bg-theme-ebony">
-    <div class="logo pt-8 pb-16 px-6">
-      <p class="text-white text-3xl">Logo</p>
+    <div class="logo pt-4 pb-12 px-6">
+      <g-image class="w-1/2" src="~/assets/logo.png"></g-image>
     </div>
     <div v-for="route in routePoint" v-bind:key="route.name">
       <g-link :to='route.path' class="flex links">

@@ -6,6 +6,7 @@
 
 module.exports = {
   siteName: 'BMA',
+
   plugins: [
     {
       use: "gridsome-plugin-tailwindcss",
