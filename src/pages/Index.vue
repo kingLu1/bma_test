@@ -16,7 +16,7 @@
         <div class="flex justify-between mb-10">
           <div>
             <div class="relative w-24 h-24 bg-white rounded-lg profile_picture">
-              <g-image v-if="parsedUser" :src="parsedUser.image_url || '~/assets/svg/user2.svg'"
+              <g-image :src="parsedUser.image_url || '~/assets/svg/user2.svg'"
                        class="w-full" fit="fill"/>
               <div class="absolute bottom-0 right-0 p-2 -mb-1 -mr-2 bg-white rounded-full">
                 <g-image class="" src="~/assets/svg/arrow-up.svg"/>
@@ -162,7 +162,7 @@
             </div>
           </div>
         </div>
-        <div v-if="!showChangePassword" class="flex justify-end w-full mt-8">
+        <div v-show="!showChangePassword" class="flex justify-end w-full mt-8">
           <div class="flex items-center justify-center w-24 py-2 button save">
             Save
           </div>

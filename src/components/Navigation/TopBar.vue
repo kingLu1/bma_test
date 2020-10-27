@@ -12,7 +12,7 @@
     <div class="user_info flex">
       <div class="flex mr-10">
         <g-image src="~/assets/svg/user.svg"/>
-        <p v-if="parsedUser">
+        <p v-show="parsedUser">
           Hi, {{ parsedUser.first_name }}
         </p>
       </div>

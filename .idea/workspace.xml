@@ -4,7 +4,7 @@
     <list default="true" id="35494ca8-e7c2-4510-b6bc-069294ea2b94" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Navigation/TopBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navigation/TopBar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/User/EditUser.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/EditUser.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +91,7 @@
       <workItem from="1603623017377" duration="24671000" />
       <workItem from="1603667694123" duration="18984000" />
       <workItem from="1603744280068" duration="21237000" />
-      <workItem from="1603784991802" duration="1269000" />
+      <workItem from="1603784991802" duration="2079000" />
     </task>
     <servers />
   </component>
@@ -111,22 +111,22 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="496" y="129" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1603784828597" />
-    <state width="1485" height="205" key="GridCell.Tab.0.bottom" timestamp="1603785709739">
+    <state width="1485" height="205" key="GridCell.Tab.0.bottom" timestamp="1603786923820">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1485" height="205" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1603785709739" />
-    <state width="1485" height="205" key="GridCell.Tab.0.center" timestamp="1603785709738">
+    <state width="1485" height="205" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1603786923820" />
+    <state width="1485" height="205" key="GridCell.Tab.0.center" timestamp="1603786923820">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1485" height="205" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1603785709738" />
-    <state width="1485" height="205" key="GridCell.Tab.0.left" timestamp="1603785709736">
+    <state width="1485" height="205" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1603786923820" />
+    <state width="1485" height="205" key="GridCell.Tab.0.left" timestamp="1603786923820">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1485" height="205" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1603785709736" />
-    <state width="1485" height="205" key="GridCell.Tab.0.right" timestamp="1603785709738">
+    <state width="1485" height="205" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1603786923820" />
+    <state width="1485" height="205" key="GridCell.Tab.0.right" timestamp="1603786923820">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1485" height="205" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1603785709738" />
+    <state width="1485" height="205" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1603786923820" />
     <state width="623" height="498" key="SwitcherDM" timestamp="1603715253232">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -135,6 +135,10 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="398" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1536.864@0.0.1536.864" timestamp="1603781039650" />
+    <state x="387" y="87" width="761" height="690" key="find.popup" timestamp="1603786817170">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="387" y="87" width="761" height="690" key="find.popup/0.0.1536.864@0.0.1536.864" timestamp="1603786817170" />
     <state x="341" y="193" key="run.anything.popup" timestamp="1603785978365">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
