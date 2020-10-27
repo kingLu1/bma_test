@@ -90,7 +90,7 @@
             </label>
             <div class="relative ">
 
-                <g-image class="ml-4 absolute py-3 w-5" src="~/assets/svg/phone.svg"/>
+              <g-image class="ml-4 absolute py-3 w-5" src="~/assets/svg/phone.svg"/>
               <input id="number" class="w-full px-3 pl-10 py-2 border-theme-navy_blue border-2 rounded-lg"
                      placeholder="Type Email Address"
                      type="text">
@@ -120,9 +120,17 @@
 </template>
 
 <script>
-// import
+import {mapGetters} from 'vuex'
+
 export default {
-  name: "EditUser"
+  name: "EditUser",
+  computed: {
+    ...mapGetters({})
+  },
+  methods: {
+    ...mapGetters({})
+  }
+
 }
 </script>
 

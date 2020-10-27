@@ -12,8 +12,8 @@
     <div class="user_info flex">
       <div class="flex mr-10">
         <g-image src="~/assets/svg/user.svg"/>
-        <p>
-          Hi, {{parsedUser.first_name}}
+        <p v-if="parsedUser">
+          Hi, {{ parsedUser.first_name }}
         </p>
       </div>
       <div class="flex">
@@ -37,7 +37,7 @@ export default {
       user: 'user'
     }),
     parsedUser() {
-      return JSON.parse(this.user)
+      return (process.isClient) ? JSON.parse(this.user) : '';
     }
   },
 }
