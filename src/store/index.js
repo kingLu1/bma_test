@@ -26,15 +26,16 @@ const store = {
       state.roles = payload
     },
     SET_USER(state, payload) {
-      const stringify = JSON.stringify(payload.data);
+
       if (process.isClient) {
+        const stringify = JSON.stringify(payload.data);
         (state.user) ? state.user = localStorage.getItem('user') : localStorage.setItem('user', stringify)
       }
 
       state.loading = false
     },
     GET_USER(state) {
-      if(process.isClient){
+      if (process.isClient) {
         state.user = localStorage.getItem('user')
       }
 
@@ -61,36 +62,37 @@ const store = {
 
     //User Operations
     createSubUser(vuexIns, payload) {
-      let user = JSON.parse(vuexIns.state.user)
-      let newSubUser = {
-        user_id: "MXTi9FjpyQKxfEsqQjbtGtZvjEuvBWRo",
-        first_name: "Munachim Anyamene",
-        is_active: true,
-        email: payload.email,
-        has_activated: false,
-        role: {
-          role_id: "MXTi9FjpyQKxfEsqQjbtGtZvjEuvBWRo",
-          name: payload.role
+
+      if (process.isClient) {
+        let user = JSON.parse(vuexIns.state.user)
+        let newSubUser = {
+          user_id: "MXTi9FjpyQKxfEsqQjbtGtZvjEuvBWRo",
+          first_name: "Munachim Anyamene",
+          is_active: true,
+          email: payload.email,
+          has_activated: false,
+          role: {
+            role_id: "MXTi9FjpyQKxfEsqQjbtGtZvjEuvBWRo",
+            name: payload.role
+          }
         }
-      }
-      user.sub_users.push(newSubUser)
-      const stringify = JSON.stringify(user);
-      if(process.isClient){
+        user.sub_users.push(newSubUser)
+        const stringify = JSON.stringify(user);
         localStorage.setItem('user', stringify)
       }
       vuexIns.commit('GET_USER')
 
     },
     deleteSubUser(vuexIns, payload) {
-      console.log(payload)
-      let user = JSON.parse(vuexIns.state.user)
-      user.sub_users.splice(payload, 1)
-      const stringify = JSON.stringify(user);
-      if(process.isClient){
+      if (process.isClient) {
+        let user = JSON.parse(vuexIns.state.user)
+        user.sub_users.splice(payload, 1)
+        const stringify = JSON.stringify(user);
         localStorage.setItem('user', stringify)
+        vuexIns.commit('GET_USER')
       }
 
-      vuexIns.commit('GET_USER')
+
     }
 
     //User Operations
