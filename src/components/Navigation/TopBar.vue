@@ -13,7 +13,7 @@
       <div class="flex mr-10">
         <g-image src="~/assets/svg/user.svg"/>
         <p>
-          Hi, Moshood
+          Hi, {{parsedUser.first_name}}
         </p>
       </div>
       <div class="flex">
@@ -27,8 +27,19 @@
 </template>
 
 <script>
+
+import {mapGetters} from "vuex";
+
 export default {
-  name: "TopBar"
+  name: "TopBar",
+  computed: {
+    ...mapGetters({
+      user: 'user'
+    }),
+    parsedUser() {
+      return JSON.parse(this.user)
+    }
+  },
 }
 </script>
 

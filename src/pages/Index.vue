@@ -1,17 +1,23 @@
 <template>
   <Layout>
+
     <!--    Delete User Dialog box-->
-    <DeleteUser v-if="showDeleteUserBox" @closeDeleteUserBox="test()"/>
+    <DeleteUser v-if="showDeleteUserBox" :activeSubUser="activeSubUser" @closeDeleteUserBox="test()"/>
     <!--    Delete User Dialog box-->
     <!--    Edit User Dialog box-->
     <EditUser v-if="showEditUserBox" @closeEditUserBox="test()"/>
     <!--    Edit User Dialog box-->
-    <div class="flex pt-16 sm:px-8">
+    <div v-if="showLoading" class="loading h-screen w-screen flex absolute justify-center items-center">
+      <p class="text-6xl text-black">Loading.....</p>
+    </div>
+    <div v-if="!showLoading" class="flex pt-16 sm:px-8">
       <!--      user profile-->
       <div class="w-1/3 pt-12 profile">
         <div class="flex justify-between mb-10">
           <div>
-            <div class="relative w-24 h-24 bg-black rounded-lg profile_picture">
+            <div class="relative w-24 h-24 bg-white rounded-lg profile_picture">
+              <g-image v-if="parsedUser.image_url" :src="parsedUser.image_url || '~/assets/svg/user2.svg'"
+                       class="w-full" fit="fill"/>
               <div class="absolute bottom-0 right-0 p-2 -mb-1 -mr-2 bg-white rounded-full">
                 <g-image class="" src="~/assets/svg/arrow-up.svg"/>
               </div>
@@ -24,28 +30,28 @@
           </div>
           <div class="flex pr-5">
             <div class="pt-10">
-              <p class="text-xl flex justify-self-center border-b-2 border-theme-navy_blue text-theme-navy_blue"
+              <p class="flex text-xl border-b-2 justify-self-center border-theme-navy_blue text-theme-navy_blue"
                  style="font-size: 28px;">
-                Moshood Aremu</p>
+                {{ parsedUser.first_name }} {{ parsedUser.last_name }}</p>
             </div>
             <div>
               <div class="p-2 rounded-full cursor-pointer bg-theme-dim_gray" @click="showEditUserBox =!showEditUserBox">
-                <g-image class="w-3 " src="~/assets/svg/edit.svg"/>
+                <g-image class="w-3" src="~/assets/svg/edit.svg"/>
               </div>
             </div>
           </div>
         </div>
         <div class="info">
           <g-image src="~/assets/svg/mail (1).svg"/>
-          <p>Moshood@brandmobileafrica.com</p>
+          <p>{{ parsedUser.email }}</p>
         </div>
         <div class="info">
           <g-image src="~/assets/svg/phone.svg"/>
-          <p>+234 818 655 1442</p>
+          <p>{{ parsedUser.phone }}</p>
         </div>
         <div class="info">
           <g-image src="~/assets/svg/pin.svg"/>
-          <p>#25B, Adewole Kolawole Crescent, off Admiralty way, Lekki, Phase 1, Lagos, Nigeria.</p>
+          <p>{{ parsedUser.address }}</p>
         </div>
         <div v-if="!showChangePassword" class="info">
           <g-image src="~/assets/svg/lock (1).svg"/>
@@ -103,137 +109,55 @@
           <div v-if="!showInvite" :class="{'-mt-8': !showInvite,'mb-8': !showInvite}"
                class="flex justify-between px-10 invite">
             <div class="w-1/3">
-              <input class="w-full px-3 py-2 border-theme-brilliant_blue border-b-2" placeholder="Type Email Address"
+              <input v-model="newSubUser.email" class="w-full px-3 py-2 border-b-2 border-theme-brilliant_blue"
+                     placeholder="Type Email Address"
                      type="email">
             </div>
-            <div class="w-1/3 relative">
-              <g-image class="absolute py-2 right-0" src="~/assets/svg/arrow_down.svg"/>
+            <div class="relative w-1/3">
+              <g-image class="absolute right-0 py-2" src="~/assets/svg/arrow_down.svg"/>
 
-              <select class="block w-full px-2 py-2 border-b-2 appearance-none border-theme-brilliant_blue">
-                <option>New Mexico</option>
-                <option>Missouri</option>
-                <option>Texas</option>
+              <select v-model="newSubUser.role"
+                      class="block w-full px-2 py-2 border-b-2 appearance-none border-theme-brilliant_blue">
+                <option v-for="role in roles" v-bind:value="role.name">{{ role.name }}</option>
               </select>
             </div>
-            <div class="flex items-center justify-center w-40 button">
+            <div class="flex items-center justify-center w-40 button" @click="createNewSubUser()">
               Invite User
             </div>
 
           </div>
           <div class="users">
-            <div class="user">
+            <div v-for="(subUser,index) in parsedUser.sub_users" :key="index"
+                 :class="{'text-theme-mischka': !subUser.has_activated}"
+                 class="user">
               <div class="photo">
                 <g-image src="~/assets/svg/user2.svg"/>
               </div>
               <div class="username">
-                <p>Munachim Anyamene</p>
+                <p>{{ subUser.first_name }}</p>
               </div>
               <div class="email">
-                <p>Munachim@brandmobileafrica.com</p>
+                <p>{{ subUser.email }}</p>
               </div>
-              <div class="role relative">
-                <g-image class="absolute  py-2 right-0" src="~/assets/svg/arrow_down.svg"/>
-                <select class="block w-full mr-4 px-2 py-2 appearance-none border-theme-brilliant_blue">
-                  <option>New Mexico</option>
-                  <option>Missouri</option>
-                  <option>Texas</option>
+              <div class="relative role">
+                <g-image class="absolute right-0 py-2" src="~/assets/svg/arrow_down.svg"/>
+                <select v-model="subUser.role.name" :class="{'bg-white': !subUser.has_activated}"
+                        :disabled="!subUser.has_activated"
+                        class="cursor-pointer w-full px-2 py-2 mr-4 appearance-none border-theme-brilliant_blue">
+                  class="cursor-pointer w-full px-2 py-2 mr-4 appearance-none border-theme-brilliant_blue">
+                  <option v-for="role in roles" v-bind:value="role.name">{{ role.name }}</option>
+
                 </select>
               </div>
-              <div class="actions">
-                <g-image class="mr-4" src="~/assets/svg/block.svg"/>
-                <g-image src="~/assets/svg/trash.svg" @click="deleteUser()"/>
-              </div>
-            </div>
-            <div class="user">
-              <div class="photo">
-                <g-image src="~/assets/svg/user2.svg"/>
-              </div>
-              <div class="username">
-                <p>Munachim Anyamene</p>
-              </div>
-              <div class="email">
-                <p>Munachim@brandmobileafrica.com</p>
-              </div>
-              <div class="role relative">
-                <g-image class="absolute  py-2 right-0" src="~/assets/svg/arrow_down.svg"/>
-                <select class="block w-full mr-4 px-2 py-2 appearance-none border-theme-brilliant_blue">
-                  <option>New Mexico</option>
-                  <option>Missouri</option>
-                  <option>Texas</option>
-                </select>
-              </div>
-              <div class="actions">
-                <g-image class="mr-4" src="~/assets/svg/block.svg"/>
-                <g-image src="~/assets/svg/trash.svg" @click="deleteUser()"/>
-              </div>
-            </div>
-            <div class="user">
-              <div class="photo">
-                <g-image src="~/assets/svg/user2.svg"/>
-              </div>
-              <div class="username">
-                <p>Munachim Anyamene</p>
-              </div>
-              <div class="email">
-                <p>Munachim@brandmobileafrica.com</p>
-              </div>
-              <div class="role relative">
-                <g-image class="absolute  py-2 right-0" src="~/assets/svg/arrow_down.svg"/>
-                <select class="block w-full mr-4 px-2 py-2 appearance-none border-theme-brilliant_blue">
-                  <option>New Mexico</option>
-                  <option>Missouri</option>
-                  <option>Texas</option>
-                </select>
-              </div>
-              <div class="actions">
-                <g-image class="mr-4" src="~/assets/svg/block.svg"/>
-                <g-image src="~/assets/svg/trash.svg" @click="deleteUser()"/>
-              </div>
-            </div>
-            <div class="user">
-              <div class="photo">
-                <g-image src="~/assets/svg/user2.svg"/>
-              </div>
-              <div class="username">
-                <p>Munachim Anyamene</p>
-              </div>
-              <div class="email">
-                <p>Munachim@brandmobileafrica.com</p>
-              </div>
-              <div class="role relative">
-                <g-image class="absolute  py-2 right-0" src="~/assets/svg/arrow_down.svg"/>
-                <select class="block w-full mr-4 px-2 py-2 appearance-none border-theme-brilliant_blue">
-                  <option>New Mexico</option>
-                  <option>Missouri</option>
-                  <option>Texas</option>
-                </select>
-              </div>
-              <div class="actions">
-                <g-image class="mr-4" src="~/assets/svg/block.svg"/>
-                <g-image src="~/assets/svg/trash.svg" @click="deleteUser()"/>
-              </div>
-            </div>
-            <div class="user">
-              <div class="photo">
-                <g-image src="~/assets/svg/user2.svg"/>
-              </div>
-              <div class="username">
-                <p>Munachim Anyamene</p>
-              </div>
-              <div class="email">
-                <p>Munachim@brandmobileafrica.com</p>
-              </div>
-              <div class="role relative">
-                <g-image class="absolute  py-2 right-0" src="~/assets/svg/arrow_down.svg"/>
-                <select class="block w-full mr-4 px-2 py-2 appearance-none border-theme-brilliant_blue">
-                  <option>New Mexico</option>
-                  <option>Missouri</option>
-                  <option>Texas</option>
-                </select>
-              </div>
-              <div class="actions">
-                <g-image class="mr-4" src="~/assets/svg/block.svg"/>
-                <g-image src="~/assets/svg/trash.svg" @click="deleteUser()"/>
+              <div class="actions flex">
+                <div v-if="subUser.has_activated" class="flex ml-8">
+                  <g-image v-if="subUser.is_active" class="mr-6" src="~/assets/svg/block.svg"/>
+                  <g-image v-else class="mr-6" src="~/assets/svg/unblocked.svg"/>
+                  <g-image src="~/assets/svg/trash.svg" @click="deleteUser(index)"/>
+                </div>
+                <div v-else class="flex items-center justify-center w-18 py-2 button save">
+                  Resend Invitation
+                </div>
               </div>
             </div>
           </div>
@@ -252,6 +176,7 @@
 <script>
 import DeleteUser from "../components/User/DeleteUser";
 import EditUser from "../components/User/EditUser";
+import {mapActions, mapGetters} from 'vuex'
 
 export default {
   metaInfo: {
@@ -261,15 +186,42 @@ export default {
     showInvite: true,
     showDeleteUserBox: false,
     showEditUserBox: false,
-    showChangePassword: false
+    showChangePassword: false,
+    newSubUser: {
+      email: '',
+      role: 'admin'
+    },
+    activeSubUser: null,
+
   }),
+  watch: {
+    user() {
+      console.log('new')
+    }
+  },
+  computed: {
+    ...mapGetters({
+      roles: 'roles',
+      user: 'user',
+      showLoading: 'showLoading'
+    }),
+    parsedUser() {
+      return JSON.parse(this.user)
+    }
+  },
   components: {
     DeleteUser,
     EditUser
   },
   methods: {
-    deleteUser() {
+    ...mapActions({
+      getRoles: 'getRoles',
+      getUser: 'getUser',
+      createSubUser: 'createSubUser'
+    }),
+    deleteUser(x) {
       this.showDeleteUserBox = true
+      this.activeSubUser = x
     },
     test() {
       this.showDeleteUserBox = false
@@ -277,9 +229,16 @@ export default {
     },
     updatePassword() {
       this.showChangePassword = false
-
+    },
+    createNewSubUser() {
+      const payload = this.newSubUser
+      this.createSubUser(payload)
     }
-  }
+  },
+  mounted() {
+    this.getRoles()
+    this.getUser()
+  },
 }
 </script>
 
@@ -303,7 +262,7 @@ export default {
 }
 
 .actions {
-  @apply flex;
+
 }
 
 .save {

@@ -3,9 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="35494ca8-e7c2-4510-b6bc-069294ea2b94" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/User/EditUser.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/EditUser.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navigation/TopBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navigation/TopBar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/User/DeleteUser.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/DeleteUser.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/README.md" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,14 +31,18 @@
     <option name="directoryName" value="3mswawbt" />
   </component>
   <component name="ProjectId" id="1jKfPQ7LzqMNIgiGIQ6ClwQVwi5" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/assets/svg" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Apps-pot/Qik/Vendor Admin" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -46,15 +54,16 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Layefa\Projects\Other\bma_test\static" />
+      <recent name="C:\Users\Layefa\Projects\Other\bma_test\src\components\User" />
+      <recent name="C:\Users\Layefa\Projects\Other\bma_test\src\components\Navigation" />
+      <recent name="C:\Users\Layefa\Projects\Other\bma_test" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Layefa\Projects\Other\bma_test\src\assets\svg" />
       <recent name="C:\Users\Layefa\Projects\Other\bma_test\src\assets" />
       <recent name="C:\Users\Layefa\Projects\Other\bma_test\src" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Layefa\Projects\Other\bma_test\src\components\User" />
-      <recent name="C:\Users\Layefa\Projects\Other\bma_test\src\components\Navigation" />
-      <recent name="C:\Users\Layefa\Projects\Other\bma_test" />
     </key>
   </component>
   <component name="RunManager">
@@ -86,7 +95,7 @@
       <workItem from="1603563704486" duration="3611000" />
       <workItem from="1603623017377" duration="24671000" />
       <workItem from="1603667694123" duration="18984000" />
-      <workItem from="1603744280068" duration="2203000" />
+      <workItem from="1603744280068" duration="20533000" />
     </task>
     <servers />
   </component>
@@ -94,14 +103,18 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="372" y="206" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1603756611392">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="372" y="206" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.864@0.0.1536.864" timestamp="1603756611392" />
     <state x="433" y="120" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1603630320548">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="433" y="120" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.864@0.0.1536.864" timestamp="1603630320548" />
-    <state x="496" y="129" key="FileChooserDialogImpl" timestamp="1603695750763">
+    <state x="496" y="129" key="FileChooserDialogImpl" timestamp="1603781926662">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="496" y="129" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1603695750763" />
+    <state x="496" y="129" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1603781926662" />
     <state width="1485" height="205" key="GridCell.Tab.0.bottom" timestamp="1603744494662">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -122,13 +135,13 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state width="623" height="498" key="SwitcherDM/0.0.1536.864@0.0.1536.864" timestamp="1603715253232" />
-    <state x="398" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1603721686177">
+    <state x="398" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1603781039650">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="398" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1536.864@0.0.1536.864" timestamp="1603721686177" />
-    <state x="341" y="193" key="run.anything.popup" timestamp="1603704118627">
+    <state x="398" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1536.864@0.0.1536.864" timestamp="1603781039650" />
+    <state x="341" y="193" key="run.anything.popup" timestamp="1603783180371">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="341" y="193" key="run.anything.popup/0.0.1536.864@0.0.1536.864" timestamp="1603704118627" />
+    <state x="341" y="193" key="run.anything.popup/0.0.1536.864@0.0.1536.864" timestamp="1603783180371" />
   </component>
 </project>

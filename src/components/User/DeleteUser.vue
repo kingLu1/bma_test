@@ -4,7 +4,7 @@
     </div>
     <div class="absolute flex flex-col w-1/3 p-5 -ml-64 bg-white border-2 rounded border-theme-navy_blue">
       <div class="flex justify-end w-full" @click="$emit('closeDeleteUserBox')">
-        <g-image src="~/assets/svg/close-3.svg" class="cursor-pointer" ></g-image>
+        <g-image class="cursor-pointer" src="~/assets/svg/close-3.svg"></g-image>
       </div>
       <div class="flex justify-center w-full p-4">
         <g-image src="~/assets/svg/signs.svg"></g-image>
@@ -14,10 +14,10 @@
         <p>Are you sure ?</p>
       </div>
       <div class="flex justify-between w-full px-16 text-center">
-        <div class="flex items-center justify-center w-1/2 mr-4 button">
+        <div class="flex items-center justify-center w-1/2 mr-4 button" @click="confirmDelete()">
           Yes
         </div>
-        <div class="flex items-center justify-center w-1/2 ml-4 button">
+        <div class="flex items-center justify-center w-1/2 ml-4 button" @click="cancelDelete()">
           No
         </div>
       </div>
@@ -26,8 +26,27 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
+
 export default {
-  name: "DeleteUser"
+  name: "DeleteUser",
+  props: {
+    activeSubUser: {
+      required: true
+    }
+  },
+  methods: {
+    ...mapActions({
+      deleteSubUser: 'deleteSubUser'
+    }),
+    confirmDelete() {
+      this.$emit('closeDeleteUserBox')
+      this.deleteSubUser(this.activeSubUser)
+    },
+    cancelDelete() {
+      this.$emit('closeDeleteUserBox')
+    }
+  }
 }
 </script>
 
