@@ -1,13 +1,13 @@
 <template>
+  <!--TODO Add Alert Messages-->
   <Layout>
-
     <!--    Delete User Dialog box-->
     <DeleteUser v-if="showDeleteUserBox" :activeSubUser="activeSubUser" @closeDeleteUserBox="closeBox()"/>
     <!--    Delete User Dialog box-->
     <!--    Edit User Dialog box-->
     <EditUser v-if="showEditUserBox" @closeEditUserBox="closeBox()"/>
     <!--    Edit User Dialog box-->
-    <div v-if="showLoading" class="loading  w-full flex absolute justify-center items-center">
+    <div v-if="showLoading" class="loading">
       <p class="text-2xl text-black">Loading.....</p>
     </div>
     <div v-if="!showLoading" class="flex pt-16 sm:px-8">
@@ -85,6 +85,7 @@
         </div>
       </div>
       <!--      user profile-->
+
       <!--      subUsers profile-->
       <div class="flex flex-col w-2/3 subUsers pb-5">
         <div v-if="!showInvite" class="flex justify-end w-full mb-5">
@@ -127,40 +128,8 @@
 
           </div>
           <div class="users">
-            <div v-for="(subUser,index) in user.sub_users" :key="index"
-                 :class="{'text-theme-mischka': !subUser.is_active}"
-                 class="user">
-              <div class="photo">
-                <g-image src="~/assets/svg/user2.svg"/>
-              </div>
-              <div class="username w-1/5">
-                <p>{{ subUser.first_name }}</p>
-              </div>
-              <div class="email  w-2/5">
-                <p>{{ subUser.email }}</p>
-              </div>
-              <div class="relative role ">
-                <g-image class="absolute right-0 py-2" src="~/assets/svg/arrow_down.svg"/>
-                <select v-model="subUser.role.name" :class="{'bg-white': !subUser.is_active}"
-                        :disabled="!subUser.is_active"
-                        class="cursor-pointer w-full px-2 py-2 mr-4 appearance-none border-theme-brilliant_blue"
-                        @change="changeRole(subUser.role.name, index)">
-                  <option v-for="role in roles" v-bind:value="role.name">{{ role.name }}</option>
-
-                </select>
-              </div>
-              <div class="actions flex">
-                <div v-if="subUser.has_activated" class="flex ml-8">
-                  <g-image v-if="subUser.is_active" class="mr-6" src="~/assets/svg/block.svg"
-                           @click="deactivateSubUser(index)"/>
-                  <g-image v-else class="mr-6" src="~/assets/svg/unblocked.svg" @click="activateSubUser(index)"/>
-                  <g-image src="~/assets/svg/trash.svg" @click="deleteUser(index)"/>
-                </div>
-                <div v-else class="flex items-center justify-center w-18 py-2 button save">
-                  Resend Invitation
-                </div>
-              </div>
-            </div>
+            <sub-user v-for="(subUser,index) in user.sub_users" :key="index" :index="index" :subUser="subUser"
+                      @deleteUser="deleteUser(index)"/>
           </div>
         </div>
         <div v-show="!showChangePassword" class="flex justify-end w-full mt-8">
@@ -177,6 +146,7 @@
 <script>
 import DeleteUser from "../components/User/DeleteUser";
 import EditUser from "../components/User/EditUser";
+import SubUser from "../components/User/SubUser";
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
@@ -193,9 +163,7 @@ export default {
       role: 'admin'
     },
     activeSubUser: null,
-    password: {
-      new: ""
-    }
+    password: {}
 
   }),
   computed: {
@@ -206,16 +174,12 @@ export default {
     }),
   },
   components: {
-    DeleteUser,
-    EditUser
+    DeleteUser, EditUser, SubUser
   },
   methods: {
     ...mapActions({
       createSubUser: 'createSubUser',
-      activateSubUser: 'activateSubUser',
-      deactivateSubUser: 'deactivateSubUser',
       changePassword: 'changePassword',
-      changeSubUserRole: 'changeSubUserRole'
     }),
     deleteUser(x) {
       this.showDeleteUserBox = true
@@ -240,13 +204,6 @@ export default {
         role: 'admin'
       }
     },
-    changeRole(x, y) {
-      let payload = {
-        newRole: x,
-        index: y
-      }
-      this.changeSubUserRole(payload)
-    }
   }
 }
 </script>
@@ -303,5 +260,9 @@ export default {
 
 .password > div > input {
   @apply w-full px-2 py-2 ml-5 border-b-2 appearance-none bg-theme-azure border-theme-brilliant_blue;
+}
+
+.loading {
+  @apply w-full flex absolute justify-center items-center;
 }
 </style>

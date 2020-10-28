@@ -3,21 +3,21 @@
     <div class="notification flex items-center">
       <div class="relative mr-2">
         <div class="text-white absolute right-0">
-          <p class="bg-theme-red w-4 h-4  flex items-center justify-center rounded-full" style="font-size: 7px">99+ </p>
+          <p class="badge">99+ </p>
         </div>
-        <g-image src="~/assets/svg/bell.svg"/>
+        <g-image class="cursor-pointer" src="~/assets/svg/bell.svg"/>
       </div>
       <p class="time">Updated 28mins ago</p>
     </div>
     <div class="user_info flex">
       <div class="flex mr-10">
-        <g-image src="~/assets/svg/user.svg"/>
+        <g-image class="cursor-pointer" src="~/assets/svg/user.svg"/>
         <p class="font-bold">
           Hi, {{ user.first_name }}
         </p>
       </div>
       <div class="flex">
-        <g-image src="~/assets/svg/question-2.svg"/>
+        <g-image class="cursor-pointer" src="~/assets/svg/question-2.svg"/>
         <p class="">
           Help
         </p>
@@ -49,4 +49,10 @@ export default {
   @apply text-theme-storm_grey opacity-75 font-bold;
   font-size: 10px;
 }
+
+.badge {
+  @apply bg-theme-red w-4 h-4 flex items-center justify-center rounded-full;
+  font-size: 7px;
+}
+
 </style>

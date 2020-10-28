@@ -24,7 +24,6 @@ module.exports = {
           brilliant_blue: '#5064CC',
           grayish_blue: '#4A566E',
           mischka: '#B6B7BA'
-
         },
       }
     },

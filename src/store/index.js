@@ -1,3 +1,4 @@
+
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
@@ -35,16 +36,13 @@ const store = {
           localStorage.setItem('user', stringify)
           state.user = localStorage.getItem('user')
         }
-        // setTimeout(() => {
         state.loading = false
-        // }, 2000)
       }
     },
     GET_USER(state) {
       if (process.isClient) {
         state.user = localStorage.getItem('user')
       }
-
     }
   },
   actions: {
@@ -92,9 +90,7 @@ const store = {
           }
         }
         user.sub_users.push(newSubUser)
-        const stringify = JSON.stringify(user);
-        localStorage.setItem('user', stringify)
-        vuexIns.commit('GET_USER')
+        vuexIns.dispatch('db_OI', user)
       }
 
 
@@ -103,29 +99,15 @@ const store = {
       if (process.isClient) {
         let user = vuexIns.getters.user
         user.sub_users.splice(payload, 1)
-        const stringify = JSON.stringify(user);
-        localStorage.setItem('user', stringify)
-        vuexIns.commit('GET_USER')
+        vuexIns.dispatch('db_OI', user)
       }
     },
-    activateSubUser(vuexIns, payload) {
-      let index = payload
+    togSubUserState(vuexIns, payload) {
+      let index = payload.index
       let user = vuexIns.getters.user
-      user.sub_users[index].is_active = true
+      user.sub_users[index].is_active = payload.bool
       if (process.isClient) {
-        const stringify = JSON.stringify(user);
-        localStorage.setItem('user', stringify)
-        vuexIns.commit('GET_USER')
-      }
-    },
-    deactivateSubUser(vuexIns, payload) {
-      let index = payload
-      let user = vuexIns.getters.user
-      user.sub_users[index].is_active = false
-      if (process.isClient) {
-        const stringify = JSON.stringify(user);
-        localStorage.setItem('user', stringify)
-        vuexIns.commit('GET_USER')
+        vuexIns.dispatch('db_OI', user)
       }
     },
     changeSubUserRole(vuexIns, payload) {
@@ -134,14 +116,19 @@ const store = {
       let user = vuexIns.getters.user
       user.sub_users[index].role.name = role
       if (process.isClient) {
-        const stringify = JSON.stringify(user);
-        localStorage.setItem('user', stringify)
-        vuexIns.commit('GET_USER')
+        vuexIns.dispatch('db_OI', user)
       }
-    }
+    },
 
 
     //User Operations
+
+    // ReUsable Methods
+    db_OI(vuexIns, payload) {
+      const stringify = JSON.stringify(payload);
+      localStorage.setItem('user', stringify)
+      vuexIns.commit('GET_USER')
+    }
 
   }
 }

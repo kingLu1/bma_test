@@ -1,9 +1,11 @@
 <template>
-  <div class="fixed z-50 -mt-16 flex items-center justify-center w-full h-screen">
+  <div class="fixed z-50 flex items-center justify-center w-full h-screen -mt-16">
+    <!--    blurry bg-->
     <div class="w-full h-full bg-theme-white_smoke blur">
     </div>
+    <!--    blurry bg-->
     <div
-        class="absolute flex self-center flex-col w-3/5 px-5 py-2 -ml-64 bg-white border-2 rounded border-theme-brilliant_blue">
+        class="absolute flex flex-col self-center w-3/5 px-5 py-2 -ml-64 bg-white border-2 rounded border-theme-brilliant_blue">
       <div class="flex justify-end w-full" @click="$emit('closeEditUserBox')">
         <g-image class="cursor-pointer" immediate="true" src="~/assets/svg/close-3.svg"></g-image>
       </div>
@@ -12,7 +14,7 @@
           <p>Edit Information</p>
         </div>
         <div>
-          <div class="relative w-24 h-24 bg-theme-storm_grey rounded-lg profile_picture">
+          <div class="relative w-24 h-24 rounded-lg bg-theme-storm_grey profile_picture">
             <g-image :src="user.image_url"
                      class="w-full" fit="fill"/>
             <div class="absolute bottom-0 right-0 p-2 -mb-1 -mr-2 bg-white rounded-full">
@@ -27,15 +29,15 @@
         </div>
       </div>
       <div class="px-8">
-        <div class="w-full flex">
+        <div class="flex w-full">
           <div class="w-1/2">
             <label for="first_name">
               First Name
             </label>
             <div class="relative mt-1">
-              <g-image class="ml-4 absolute py-3 w-4" immediate="true" src="~/assets/svg/user-2.svg"/>
+              <g-image class="absolute w-4 py-3 ml-4" immediate="true" src="~/assets/svg/user-2.svg"/>
               <input id="first_name" v-model="user.first_name"
-                     class="w-full px-3 pl-10 py-2 border-theme-navy_blue border-2 rounded-lg"
+                     class=""
                      placeholder="Full Name"
                      type="text">
             </div>
@@ -45,10 +47,10 @@
               Last Name
             </label>
             <div class="relative mt-1">
-              <g-image class="ml-4 absolute py-3 w-4" immediate="true" src="~/assets/svg/user-2.svg"/>
+              <g-image class="absolute w-4 py-3 ml-4" immediate="true" src="~/assets/svg/user-2.svg"/>
 
               <input id="last_name" v-model="user.last_name"
-                     class="w-full px-3 pl-10 py-2 border-theme-navy_blue border-2 rounded-lg"
+                     class=""
                      placeholder="Full Name"
                      type="text">
             </div>
@@ -60,27 +62,27 @@
             <label for="address">
               Address
             </label>
-            <div class="relative ">
-              <g-image class="absolute py-3 ml-4 w-3" immediate="true" src="~/assets/svg/pin.svg"/>
-              <input id="address" v-model="user.address" class="w-full px-3 pl-10 py-2 border-theme-navy_blue border-2 rounded-lg"
+            <div class="relative">
+              <g-image class="absolute w-3 py-3 ml-4" immediate="true" src="~/assets/svg/pin.svg"/>
+              <input id="address" v-model="user.address" class=""
                      placeholder="Type Email Address"
                      type="text">
             </div>
           </div>
-          <div class="w-1/4 relative mt-6">
-            <g-image class="absolute py-2 right-0" immediate="true" src="~/assets/svg/arrow_down.svg"/>
+          <div class="relative w-1/4 mt-6">
+            <g-image class="absolute right-0 py-2" immediate="true" src="~/assets/svg/arrow_down.svg"/>
 
             <select
-                class="block w-full text-theme-dim_gray  px-2 py-2 rounded-lg border-2 appearance-none border-theme-brilliant_blue">
+                class="">
               <option>City</option>
               <!--              <option>Missouri</option>-->
               <!--              <option>Texas</option>-->
             </select>
           </div>
-          <div class="w-1/4 relative mt-2">
-            <g-image class="absolute py-2 right-0" immediate="true" src="~/assets/svg/arrow_down.svg"/>
+          <div class="relative w-1/4 mt-2">
+            <g-image class="absolute right-0 py-2" immediate="true" src="~/assets/svg/arrow_down.svg"/>
             <select
-                class="block  text-theme-dim_gray w-full px-2 py-2 rounded-lg border-2 appearance-none border-theme-brilliant_blue">
+                class="">
               <option>State</option>
               <!--              <option>Missouri</option>-->
               <!--              <option>Texas</option>-->
@@ -96,11 +98,11 @@
             <label for="email">
               Email
             </label>
-            <div class="relative ">
-              <g-image class="absolute py-4 ml-4 w-4" immediate="true" src="~/assets/svg/mail (1).svg"/>
+            <div class="relative">
+              <g-image class="absolute w-4 py-4 ml-4" immediate="true" src="~/assets/svg/mail (1).svg"/>
 
               <input id="email" v-model="user.email"
-                     class="w-full px-3 pl-10 py-2 border-theme-navy_blue border-2 rounded-lg"
+                     class=""
                      placeholder="Type Email Address"
                      type="email">
             </div>
@@ -109,17 +111,17 @@
             <label for="number">
               Phone Number
             </label>
-            <div class="relative ">
+            <div class="relative">
 
-              <g-image class="ml-4 absolute py-3 w-5" immediate="true" src="~/assets/svg/phone.svg"/>
+              <g-image class="absolute w-5 py-3 ml-4" immediate="true" src="~/assets/svg/phone.svg"/>
               <input id="number" v-model="user.phone"
-                     class="w-full px-3 pl-10 py-2 border-theme-navy_blue border-2 rounded-lg"
+                     class=""
                      placeholder="Type Email Address"
                      type="text">
             </div>
           </div>
         </div>
-        <div class="mt-10 w-full pb-5 flex justify-center">
+        <div class="flex justify-center w-full pb-5 mt-10">
           <div class="flex items-center justify-center w-48 py-2 button save" @click="updateUser()">
             Update
           </div>
@@ -178,7 +180,15 @@ export default {
 
 label {
   font-size: 12px;
-  @apply text-theme-ebony opacity-50 font-bold;
+  @apply font-bold opacity-50 text-theme-ebony;
+}
+
+input {
+  @apply w-full px-3 py-2 pl-10 border-2 rounded-lg border-theme-navy_blue;
+}
+
+select {
+  @apply block w-full px-2 py-2 border-2 rounded-lg appearance-none text-theme-dim_gray border-theme-brilliant_blue;
 }
 
 </style>
