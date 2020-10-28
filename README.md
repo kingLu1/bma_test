@@ -1,14 +1,26 @@
-# Default starter for Gridsome
+# BRAND MOBILE AFRICA ASSESSMENT TEST
 
-This is the project you get when you run `gridsome create new-project`.
+#### Introduction
+The goal is to build a simple web application that features the CRUD operations of a User Profile.
 
-### 1. Install Gridsome CLI tool if you don't have
+Programming: Javascript, HTML, CSS.
 
-`npm install --global @gridsome/cli`
+Frameworks: Vue.js, vuex
 
-### 2. Create a Gridsome project
+Sever: Mock API
 
-1. `gridsome create my-gridsome-site` to install default starter
-2. `cd my-gridsome-site` to open the folder
-3. `gridsome develop` to start a local dev server at `http://localhost:8080`
-4. Happy coding 🎉🙌
+Design: `https://xd.adobe.com/view/ec6f3204-cf6c-4eb7-8391-c16c95e7f1d4-b93c/`
+
+#### Setup
+Install Gridsome CLI tool if you don't have `npm install --global @gridsome/cli`
+
+1. `cd my-test` to open the folder
+2. `gridsome develop` to start a local dev server at `http://localhost:8080`
+
+#### Deploy
+`gridsome build` to build the site as a static website to deploy.
+
+Deploy files found in  `my-test/dist` folder.
+
+Thank You
+
