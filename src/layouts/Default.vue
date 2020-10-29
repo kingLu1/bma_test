@@ -23,6 +23,7 @@ export default {
     ...mapActions({
       getUser: 'getUser',
       getRoles: 'getRoles',
+      mock: 'mock'
     }),
   },
 
@@ -31,6 +32,7 @@ export default {
     this.getUser()
     this.getRoles()
     // Get Jsons from Server
+    this.mock()
   }
 
 }

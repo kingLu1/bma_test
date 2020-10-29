@@ -1,6 +1,6 @@
 <template>
-  <!--TODO Add Alert Messages-->
   <Layout>
+    <Dialog v-if="showDialog" :activeSubUser="activeSubUser" @closeDialog="closeBox()"/>
     <!--    Delete User Dialog box-->
     <DeleteUser v-if="showDeleteUserBox" :activeSubUser="activeSubUser" @closeDeleteUserBox="closeBox()"/>
     <!--    Delete User Dialog box-->
@@ -129,7 +129,8 @@
           </div>
           <div class="users">
             <sub-user v-for="(subUser,index) in user.sub_users" :key="index" :index="index" :subUser="subUser"
-                      @deleteUser="deleteUser(index)"/>
+                      @deleteUser="deleteUser(index)"
+                      @openDialog="openDialog"/>
           </div>
         </div>
         <div v-show="!showChangePassword" class="flex justify-end w-full mt-8">
@@ -146,6 +147,7 @@
 <script>
 import DeleteUser from "../components/User/DeleteUser";
 import EditUser from "../components/User/EditUser";
+import Dialog from "../components/User/Dialog";
 import SubUser from "../components/User/SubUser";
 import {mapActions, mapGetters} from 'vuex'
 
@@ -158,12 +160,13 @@ export default {
     showDeleteUserBox: false,
     showEditUserBox: false,
     showChangePassword: false,
+    showDialog: false,
     newSubUser: {
       email: '',
       role: 'admin'
     },
     activeSubUser: null,
-    password: {}
+    password: {},
 
   }),
   computed: {
@@ -174,7 +177,7 @@ export default {
     }),
   },
   components: {
-    DeleteUser, EditUser, SubUser
+    DeleteUser, EditUser, SubUser, Dialog
   },
   methods: {
     ...mapActions({
@@ -188,6 +191,11 @@ export default {
     closeBox() {
       this.showDeleteUserBox = false
       this.showEditUserBox = false
+      this.showDialog = false
+    },
+    openDialog(payload) {
+      this.showDialog = true
+      this.activeSubUser = payload
     },
     updatePassword() {
       let payload = this.password
@@ -263,6 +271,6 @@ export default {
 }
 
 .loading {
-  @apply w-full flex absolute justify-center items-center;
+  @apply w-full h-screen flex absolute justify-center items-center;
 }
 </style>

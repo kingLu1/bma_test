@@ -24,9 +24,9 @@
     <div class="actions flex">
       <div v-if="subUser.has_activated" class="flex ml-8">
         <g-image v-if="subUser.is_active" class="mr-6 cursor-pointer" src="~/assets/svg/block.svg"
-                 @click="toggleSubUserState(index, false)"/>
+                 @click="openDialog(index, false)"/>
         <g-image v-else class="mr-6 cursor-pointer" src="~/assets/svg/unblocked.svg"
-                 @click="toggleSubUserState(index,true)"/>
+                 @click="openDialog(index,true)"/>
         <g-image class="cursor-pointer" src="~/assets/svg/trash.svg" @click="$emit('deleteUser')"/>
       </div>
       <div v-else class="flex items-center justify-center w-18 py-2 button save">
@@ -58,8 +58,6 @@ export default {
   methods: {
     ...mapActions({
       changeSubUserRole: 'changeSubUserRole',
-      togSubUserState: 'togSubUserState',
-
     }),
     changeRole(x) {
       let payload = {
@@ -68,13 +66,12 @@ export default {
       }
       this.changeSubUserRole(payload)
     },
-    toggleSubUserState(x, y) {
+    openDialog(x, y) {
       let payload = {
         index: x,
         bool: y
       }
-      this.togSubUserState(payload)
-
+      this.$emit('openDialog', payload)
     }
   }
 }

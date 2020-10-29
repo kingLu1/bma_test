@@ -1,4 +1,3 @@
-
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
@@ -10,6 +9,7 @@ const store = {
     roles: [],
     user: (process.isClient) ? localStorage.getItem('user') : '',
     loading: true,
+    mockApi: 'http://jsonplaceholder.typicode.com'
   },
   getters: {
     roles: state => {
@@ -52,7 +52,9 @@ const store = {
           .then(res => {
                 vuexIns.commit('SET_USER_ROLES', res.data.data)
               }
-          ).catch(err => console.log('err:', err))
+          ).catch(err => Vue.$toast.error(err, {
+        position: 'top-right'
+      }))
     },
     getUser(vuexIns) {
       vuexIns.state.loading = true
@@ -60,64 +62,165 @@ const store = {
           .then(res => {
                 vuexIns.commit('SET_USER', res.data)
               }
-          ).catch(err => console.log('err:', err))
+          ).catch(err => Vue.$toast.error(err, {
+        position: 'top-right'
+      }))
     },
     // Fetch From Db
 
     //User Operations
     updateUserInfo(vuexIns, payload) {
-      if (process.isClient) {
-        const stringify = JSON.stringify(payload);
-        localStorage.setItem('user', stringify)
-        vuexIns.commit('GET_USER')
-      }
+      vuexIns.state.loading = true
+      axios.put(`${vuexIns.state.mockApi}/posts/1`, {
+        body: payload
+      })
+          .then(response => {
+            Vue.$toast.success('User Profile Was Edited Successfully.', {
+              position: 'top-right'
+            })
+            if (process.isClient) {
+              const stringify = JSON.stringify(payload);
+              localStorage.setItem('user', stringify)
+              vuexIns.commit('GET_USER')
+            }
+            vuexIns.state.loading = false
+
+          })
+          .catch(e => {
+            Vue.$toast.error(e, {
+              position: 'top-right'
+            })
+            vuexIns.state.loading = false
+          })
     },
     changePassword(vuexIns, payload) {
-      console.log(payload)
+      vuexIns.state.loading = true
+      axios.put(`${vuexIns.state.mockApi}/posts/1`, {
+        body: payload
+      })
+          .then(response => {
+            Vue.$toast.success('Password was Changed Successfully.', {
+              position: 'top-right'
+            })
+            vuexIns.state.loading = false
+          })
+          .catch(e => {
+            Vue.$toast.error(e, {
+              position: 'top-right'
+            })
+            vuexIns.state.loading = false
+          })
     },
     createSubUser(vuexIns, payload) {
-      if (process.isClient) {
-        let user = vuexIns.getters.user
-        let newSubUser = {
-          user_id: "MXTi9FjpyQKxfEsqQjbtGtZvjEuvBWRo",
-          first_name: "Munachim Anyamene",
-          is_active: true,
-          email: payload.email,
-          has_activated: true,
-          role: {
-            role_id: "MXTi9FjpyQKxfEsqQjbtGtZvjEuvBWRo",
-            name: payload.role
-          }
-        }
-        user.sub_users.push(newSubUser)
-        vuexIns.dispatch('db_OI', user)
-      }
+      vuexIns.state.loading = true
+      axios.post(`${vuexIns.state.mockApi}/posts`, {
+        body: payload
+      })
+          .then(response => {
+            Vue.$toast.success('SubUser Was Created Successfully.', {
+              position: 'top-right'
+            })
+            if (process.isClient) {
+              let user = vuexIns.getters.user
+              let newSubUser = {
+                user_id: "MXTi9FjpyQKxfEsqQjbtGtZvjEuvBWRo",
+                first_name: "Munachim Anyamene",
+                is_active: true,
+                email: payload.email,
+                has_activated: true,
+                role: {
+                  role_id: "MXTi9FjpyQKxfEsqQjbtGtZvjEuvBWRo",
+                  name: payload.role
+                }
+              }
+              user.sub_users.push(newSubUser)
+              vuexIns.dispatch('db_OI', user)
+              vuexIns.state.loading = false
+            }
+          })
+          .catch(e => {
+            Vue.$toast.error(e, {
+              position: 'top-right'
+            })
+            vuexIns.state.loading = false
+          })
 
 
     },
     deleteSubUser(vuexIns, payload) {
-      if (process.isClient) {
-        let user = vuexIns.getters.user
-        user.sub_users.splice(payload, 1)
-        vuexIns.dispatch('db_OI', user)
-      }
+      vuexIns.state.loading = true
+      axios.delete(`${vuexIns.state.mockApi}/posts/1`, {
+        body: payload
+      })
+          .then(response => {
+            Vue.$toast.success('SubUser Was Deleted Successfully.', {
+              position: 'top-right'
+            })
+            if (process.isClient) {
+              let user = vuexIns.getters.user
+              user.sub_users.splice(payload, 1)
+              vuexIns.dispatch('db_OI', user)
+            }
+            vuexIns.state.loading = false
+          })
+          .catch(e => {
+            Vue.$toast.error(e, {
+              position: 'top-right'
+            })
+            vuexIns.state.loading = false
+          })
+
     },
     togSubUserState(vuexIns, payload) {
-      let index = payload.index
-      let user = vuexIns.getters.user
-      user.sub_users[index].is_active = payload.bool
-      if (process.isClient) {
-        vuexIns.dispatch('db_OI', user)
-      }
+      vuexIns.state.loading = true
+      axios.put(`${vuexIns.state.mockApi}/posts/1`, {
+        body: payload
+      })
+          .then(response => {
+            Vue.$toast.success('Action Was Successful.', {
+              position: 'top-right'
+            })
+            let index = payload.index
+            let user = vuexIns.getters.user
+            user.sub_users[index].is_active = payload.bool
+            if (process.isClient) {
+              vuexIns.dispatch('db_OI', user)
+              vuexIns.state.loading = false
+
+            }
+          })
+          .catch(e => {
+            Vue.$toast.error(e, {
+              position: 'top-right'
+            })
+            vuexIns.state.loading = false
+          })
+
     },
     changeSubUserRole(vuexIns, payload) {
-      let index = payload.index
-      let role = payload.newRole
-      let user = vuexIns.getters.user
-      user.sub_users[index].role.name = role
-      if (process.isClient) {
-        vuexIns.dispatch('db_OI', user)
-      }
+      vuexIns.state.loading = true
+      axios.put(`${vuexIns.state.mockApi}/posts/1`, {
+        body: payload
+      })
+          .then(response => {
+            Vue.$toast.success('Role Was Changed Successfully.', {
+              position: 'top-right'
+            })
+            let index = payload.index
+            let role = payload.newRole
+            let user = vuexIns.getters.user
+            user.sub_users[index].role.name = role
+            if (process.isClient) {
+              vuexIns.dispatch('db_OI', user)
+            }
+            vuexIns.state.loading = false
+          })
+          .catch(e => {
+            vuexIns.state.loading = false
+            Vue.$toast.error(e, {
+              position: 'top-right'
+            })
+          })
     },
 
 
@@ -128,7 +231,11 @@ const store = {
       const stringify = JSON.stringify(payload);
       localStorage.setItem('user', stringify)
       vuexIns.commit('GET_USER')
-    }
+    },
+    mock() {
+
+    },
+
 
   }
 }
