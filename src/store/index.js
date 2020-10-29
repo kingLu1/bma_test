@@ -9,7 +9,7 @@ const store = {
     roles: [],
     user: (process.isClient) ? localStorage.getItem('user') : '',
     loading: true,
-    mockApi: 'http://jsonplaceholder.typicode.com'
+    mockApi: 'https://jsonplaceholder.typicode.com'
   },
   getters: {
     roles: state => {
